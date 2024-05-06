@@ -11,6 +11,9 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
+    protected $table = "users";
+    protected $primaryKey = "id";
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -18,8 +21,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'birthday',
         'email',
         'password',
+        'id_rol'
     ];
 
     /**
@@ -43,5 +49,13 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function rol(){
+        return $this->belongsTo(rol::class,'id_rol','id_rol');
+    }
+
+    public function tienda()
+    {
+        return $this->hasOne(Tienda::class, 'user_id');
     }
 }
