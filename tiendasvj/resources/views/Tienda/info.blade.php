@@ -30,7 +30,7 @@
                         <label for="" class="form-label">Direccion de la  Tienda</label>
                         <input
                             type="text"
-                            class="form-control crud @error('nombre') is-invalid @enderror"
+                            class="form-control crud @error('direccion') is-invalid @enderror"
                             name="direccion"
                             id=""
                             aria-describedby="helpId"
@@ -38,8 +38,8 @@
                             value="{{$tienda->direccion}}"
                             required
                         />
-                        @error('nombre')
-                            <div class="invalid-feedback">{{"Por favor una dirección"}}</div>
+                        @error('direccion')
+                            <div class="invalid-feedback">{{"Por favor introduzca una dirección"}}</div>
                         @enderror
                         <br>
                         <label for="" class="form-label">Propietario: </label>

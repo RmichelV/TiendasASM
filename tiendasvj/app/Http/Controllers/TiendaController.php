@@ -33,8 +33,9 @@ class TiendaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|regex:/^(?!\s+$)[a-zA-Z\s]+$/',
-            'direccion'=> 'required|string|regex:/^(?!\s+$)[a-zA-Z\s]+$/',
+            'nombre' => 'required|string|regex:/^(?!\s*$)[\s\S]*[A-Z]+[\s\S]*$/',
+            
+            'direccion'=> 'required|string|regex:/^(?!\s*$)[\s\S]*[A-Z]+[\s\S]*$/',
         ]);
 
         if ($validator->fails()) {
@@ -71,8 +72,8 @@ class TiendaController extends Controller
     public function update(Request $request, $id_tienda)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|regex:/^(?!\s+$)[a-zA-Z\s]+$/',
-            'direccion'=> 'required|string|regex:/^(?!\s+$)[a-zA-Z\s]+$/',
+            'nombre' => 'required|string|regex:/^(?!\s*$)[\s\S]*[A-Z]+[\s\S]*$/',
+            'direccion'=> 'required|string|regex:/^(?!\s*$)[\s\S]*[A-Z]+[\s\S]*$/',
         ]);
 
         if ($validator->fails()) {
