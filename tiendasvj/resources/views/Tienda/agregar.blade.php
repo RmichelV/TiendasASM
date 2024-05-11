@@ -27,7 +27,7 @@
                         <label for="" class="form-label">Direccion de la tienda: </label>
                         <input
                             type="text"
-                            class="form-control crud @error('nombre') is-invalid @enderror"
+                            class="form-control crud @error('direccion') is-invalid @enderror"
                             name="direccion"
                             id="direccion"
                             aria-describedby="helpId"
@@ -35,7 +35,7 @@
                             required
                         />
                         <small id="helpId" class="form-text text-muted">de ser puesto incluya el numero con # </small>
-                        @error('birthday')
+                        @error('direccion')
                             <div class="invalid-feedback">{{"Por favor introduzca una direccion"}}</div>
                         @enderror
                         <br>

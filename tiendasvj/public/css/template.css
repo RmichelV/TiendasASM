@@ -1,3 +1,18 @@
 .crud{
     border: solid 4px red;
 }
+
+.generos-container, .plataformas-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genero, .plataforma {
+    flex: 0 0 calc(33.33% - 10px); /* Calcula el ancho de cada genero (33.33%) menos el espacio entre ellos */
+    margin: 5px; /* Espacio entre los géneros */
+}
+
+.ljuegos-Img{
+    width: 10%;
+    width: 20%;
+}

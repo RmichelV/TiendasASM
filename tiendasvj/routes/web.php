@@ -9,6 +9,7 @@ use App\Http\Controllers\MetodoDePagoController;
 use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TiendaController;
+use App\Http\Controllers\JuegoController;
 
 
 Route::get('/', function () {
@@ -35,5 +36,6 @@ Route::resource('plataformas',PlataformaController::class);
 Route::resource('rols',RolController::class);
 Route::resource('users',UserController::class);
 Route::resource('tiendas',TiendaController::class);
+Route::resource('juegos',JuegoController::class);
 
 
