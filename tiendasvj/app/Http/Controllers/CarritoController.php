@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\carrito;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\juego;
 class CarritoController extends Controller
 {
     /**
@@ -28,7 +29,16 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carritos = new carrito();
+        $userc=Auth::user();
+        if($userc){
+            $carritos->user_id=$userc->id;
+            $carritos->id_juego = $request->input('id_juego');
+        }
+        
+        $carritos->save();
+        return redirect()->back()->with('success', 'el juego se  se ha  agregado correctamente.');
+
     }
 
     /**

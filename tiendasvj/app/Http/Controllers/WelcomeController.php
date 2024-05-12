@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\welcome;
+use App\Models\juego;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -12,7 +13,9 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        //
+        
+        $juegos = juego::all();
+        return view('welcome',compact('juegos'));
     }
 
     /**

@@ -10,11 +10,10 @@ use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\JuegoController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CarritoController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[WelcomeController::class,'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,5 +36,7 @@ Route::resource('rols',RolController::class);
 Route::resource('users',UserController::class);
 Route::resource('tiendas',TiendaController::class);
 Route::resource('juegos',JuegoController::class);
+Route::resource('carritos',CarritoController::class);
+
 
 
