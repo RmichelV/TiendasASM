@@ -16,7 +16,7 @@ use App\Http\Controllers\CarritoController;
 Route::get('/',[WelcomeController::class,'index']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('bienvenido');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -39,4 +39,20 @@ Route::resource('juegos',JuegoController::class);
 Route::resource('carritos',CarritoController::class);
 
 
+
+Route::get('mpago', function () {
+    return view('pago');
+});
+
+
+
+///////////samuel////////////////////
+Route::get('/juegos/filtrar-por-genero/{id_genero}', [JuegoController::class, 'filtrarPorGenero'])->name('juegos.filtrarPorGenero');
+
+// Rutas resource para juegos y carritos
+Route::resource('juegos', JuegoController::class);
+// RUTA DE FILTRADO POR GENERO
+Route::get('/juegos/filtrar-por-genero/{id_genero}', [JuegoController::class, 'filtrarPorGenero'])->name('juegos.filtrarPorGenero');
+// RUTA DE FILTRADO POR PLATAFORMA
+Route::get('/juegos/filtrar-por-plataforma/{id_plataforma}', [JuegoController::class, 'filtrarPorPlataforma'])->name('juegos.filtrarPorPlataforma');
 

@@ -28,9 +28,8 @@
 
                                 <br> 
                                 
-
                             <label for="" class="form-label">Descripcion del juego</label>
-                            <textarea 
+                            <input 
                                 class="form-control crud @error('descripcion') is-invalid @enderror"
                                 name="descripcion" 
                                 rows="4" 
@@ -38,7 +37,7 @@
                                 placeholder="Escriba aquí por favor"
                                 required
                                 value="{{ old('descripcion') }}"
-                                ></textarea>
+                                />
                                 @error('descripcion')
                                     <div class="invalid-feedback">{{"Por favor introduzca una descripcion valida"}}</div>
                                 @enderror
@@ -51,7 +50,7 @@
                                     <option value="1 a 4 jugadores">1 a 8 jugadores</option>
                                     <option value="1 a 4 jugadores">1 a 16 jugadores</option>
                                     <option value="2 jugadores">2 jugadores</option>
-                                    <option value="2 jugadores">Multijugador</option>
+                                    <option value="Multijugador">Multijugador</option>
                                 </select>
                             <br>
                             <label for="" class="form-label">Precio Bs.: </label>
@@ -82,7 +81,7 @@
                                     required
                                     value="{{ old('stock') }}"
                                 />
-                                @error('precio')
+                                @error('stock')
                                     <div class="invalid-feedback">{{"Por favor introduzca una cantidad valida"}}</div>
                                 @enderror
                             <br>

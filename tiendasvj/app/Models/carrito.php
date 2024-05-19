@@ -13,6 +13,9 @@ class carrito extends Model
     
     protected $fillable = ["user_id","id_juego"];
 
-    
+    public function juego()
+    {
+        return $this->hasMany(juego::class, 'id_juego','id_juego');
+    }
     public $timestamps = false;
 }
