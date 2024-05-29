@@ -8,7 +8,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-
+        
         <!-- Bootstrap CSS v5.2.1 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -16,10 +16,17 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+
         <link rel="stylesheet" href="{{ asset('css/template.css') }}">
+        
+
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jaro:opsz@6..72&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     </head>
 
-    <body>
+    <body style="background-color: rgba(50, 127, 152, 0.602);">
         <div id="carouselExampleAutoplaying" class="carousel slide ch" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -45,16 +52,16 @@
             </button>
         </div>
         <header>
-            <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="dashboard">Bienvenida</a>
+            <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark" >
+                <div class="container-fluid" style="background-color: #0A526B">
+                    <a class="navbar-brand" href="dashboard" style="font-family: 'Sherif FB', sans-serif;">Bienvenida</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: #0A526B">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Catalogo</a>
+                                <a class="nav-link active" aria-current="page" href="/" style="font-family: ">Catalogo</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
@@ -75,6 +82,15 @@
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{url('users')}}">Lista de usuarios</a></li>
                                     <li><a class="dropdown-item" href="{{url('tiendas')}}">Lista de Tiendas</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ventas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar una Venta</a></li>
+                                    <li><a class="dropdown-item" href="{{url('#')}}">Registro de Ventas</a></li>
                                 </ul>
                             </li>
                             <!--             samuel ---->
@@ -136,10 +152,10 @@
                                         Dashboard
                                     </a> --}}
                                         <a href="{{ route('profile.edit') }}"  class="rounded-md px-3 py-2  ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        style="color: aqua">{{ __('Perfil') }}</a>
+                                        style="color: #1098A4">{{ __('Perfil') }}</a>
                                         <!-- Authentication -->
                                         <form method="POST" action="{{ route('logout') }}" class="rounded-md px-3 py-2  ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        style="color: aqua">
+                                        style="color: #1098A4 ">
                                             @csrf
                                             <button type="submit">{{ __('Cerrar Sesión') }}</button>
                                         </form>
@@ -147,7 +163,7 @@
                                     <a
                                         href="{{ route('login') }}"
                                         class="rounded-md px-3 py-2  ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        style="color: aqua"
+                                        style="color: rgba(52, 174, 208, 0.694)"
                                     >
                                         Iniciar Sesión
                                     </a>
@@ -155,7 +171,7 @@
                                         <a
                                             href="{{ route('register') }}"
                                             class="rounded-md px-3 py-2  ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                            style="color: aqua"
+                                            style="color: rgba(52, 174, 208, 0.694)"
                                         >
                                             Registrarse
                                         </a>

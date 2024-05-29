@@ -20,7 +20,7 @@
                         <center>
                             <img src="{{ asset('img/' . $juego->imagen) }}" alt="" srcset="" class="ljuegos-Img" width="80px" height="80px"><br><br> 
                             {{$juego->nombre}} <br>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$key}}">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$key}}" style="background-color: rgba(24, 20, 104, 0.5)">
                                 Ver más informacion
                             </button>
                             <div class="modal fade" id="exampleModal{{$key}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$key}}" aria-hidden="true">
@@ -30,12 +30,13 @@
                                             <h1 class="modal-title fs-5" id="exampleModalLabel{{$key}}">{{$juego->nombre}}</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
+                                
+                                        <div class="modal-body", style="color: #S053A8B;">
                                             <img src="{{ asset('img/' . $juego->imagen) }}" alt="" srcset="" class="ljuegos-Img"> <br> 
-                                            <strong>Descripción</strong> {{$juego->descripcion}} <br>
-                                            <strong>Precio: Bs.</strong>  {{$juego->precio}} <br>
-                                            <strong>Cantidad de jugadores: </strong>{{$juego->cantidad_de_jugadores}} <br>
-                                            <strong>Cantidad en stock: </strong>{{$juego->stock}}
+                                            <strong style="color: black">Descripción</strong> {{$juego->descripcion}} <br>
+                                            <strong style="color: black">Precio: Bs.</strong>  {{$juego->precio}} <br>
+                                            <strong style="color: black">Cantidad de jugadores: </strong>{{$juego->cantidad_de_jugadores}} <br>
+                                            <strong style="color: black">Cantidad en stock: </strong>{{$juego->stock}}
                                         </div>
                                         <div class="modal-footer">
                                             <form action="{{ route('carritos.store') }}" method="POST">

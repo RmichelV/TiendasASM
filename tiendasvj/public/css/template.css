@@ -22,8 +22,13 @@
     height: 50vh;
 }
 
+.t-juegos{
+  background-color: #3091968d
+}
 
-
+.t-juegos-h{
+  background-color: #0a526b;
+}
 /*------------------------------------------*/
 body {
     font-family: Arial, sans-serif;
@@ -60,7 +65,7 @@ body {
   }
   
   button {
-    background-color: #cc0000;
+    background-color: #0b2739e6;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -70,7 +75,7 @@ body {
   }
   
   button:hover {
-    background-color: #990000;
+    background-color: rgba(25, 12, 87, 0.335);
   }
 
   .wlc{
@@ -78,4 +83,11 @@ body {
     align-items: center;
     flex-direction: column;
 
+  }
+  .titulo-j{
+    color: #0E0A52; 
+    font-family: "Jaro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
   }
