@@ -47,11 +47,14 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
                                     </li>
-                                @elseif($user->id_rol==3)
+                                @endif
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{url('carritos')}}">Mi Carrito</a>
+                                        <a class="nav-link" href="{{url('carritos')}}" >
+                                            Mi Carrito
+                                            {{-- <img src="{{ asset('img/carrito.png') }}" alt="" class="carrito"> --}}
+                                        </a>
                                     </li>
-                                @elseif($user->id_rol==3)
+                                @if($user->id_rol==1)
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Registros
@@ -122,10 +125,11 @@
                             <!--             samuel ---->
 
                         </ul>
-                        {{-- <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">Search</button>
-                        </form>  --}}
+                        <form class="d-flex" role="search" action="{{ route('buscador.index') }}" method="GET">
+                            <input class="form-control me-2" name="query" type="search" placeholder="Buscar" aria-label="Search" value="{{ request()->input('query') }}">
+                            <button class="btn btn-outline-light" type="submit">Buscar</button>
+                        </form>
+                        
                         @if (Route::has('login'))
                         
                                 @auth

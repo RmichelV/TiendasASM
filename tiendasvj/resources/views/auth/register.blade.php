@@ -5,14 +5,14 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nombre(s)')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Ej. Marco Antonio" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!--Lastname-->
         <div>
             <x-input-label for="last_name" :value="__('Apellido(s)')" />
-            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
+            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name"  placeholder="Ej. Avedaño Nuñez"/>
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
 
@@ -26,7 +26,7 @@
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Correo Electronico')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Ej. marco@example.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -37,7 +37,8 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required autocomplete="new-password"
+                            placeholder="Min. 8 caracteres" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -48,7 +49,8 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" required autocomplete="new-password" 
+                            placeholder="Min.8 caracteres"/>
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>

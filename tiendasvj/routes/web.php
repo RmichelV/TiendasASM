@@ -13,6 +13,7 @@ use App\Http\Controllers\JuegoController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\DetalleDeVentaController;
+use App\Http\Controllers\BuscadorController;
 
 Route::get('/',[WelcomeController::class,'index']);
 
@@ -39,7 +40,7 @@ Route::resource('tiendas',TiendaController::class);
 Route::resource('juegos',JuegoController::class);
 Route::resource('carritos',CarritoController::class);
 Route::resource('detalle_ventas',DetalleDeVentaController::class);
-
+Route::resource('buscador',BuscadorController::class);
 
 
 Route::get('mpago', function () {

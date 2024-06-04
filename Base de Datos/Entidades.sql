@@ -112,7 +112,23 @@ CREATE TABLE juegos (
     FOREIGN KEY (id_tienda) REFERENCES tiendas(id_tienda) ON DELETE CASCADE
 );
 
--------------------9------------------------------------------
+---------------------- 9 -----------------------------------------
+CREATE TABLE juegos_plataformas (
+    id_juego INT,
+    id_plataforma INT,
+    FOREIGN KEY (id_juego) REFERENCES juegos(id_juego) ON DELETE CASCADE,
+    FOREIGN KEY (id_plataforma) REFERENCES plataformas(id_plataforma) ON DELETE CASCADE
+);
+
+----------------------------- 10 ----------------------------
+CREATE TABLE juegos_generos (
+    id_juego INT,
+    id_genero INT,
+    FOREIGN KEY (id_juego) REFERENCES juegos(id_juego) ON DELETE CASCADE,
+    FOREIGN KEY (id_genero) REFERENCES generos(id_genero) ON DELETE CASCADE
+);
+
+-------------------11------------------------------------------
 
 -- tabla de carrito actualizada 
 CREATE TABLE carritos (
@@ -123,24 +139,30 @@ CREATE TABLE carritos (
     FOREIGN KEY (id_juego) REFERENCES juegos(id_juego) ON DELETE CASCADE
 );
 
+CREATE TABLE Datos_Qr(
+    id_datos_qr INT PRIMARY KEY,
+    user_id BIGINT UNSIGNED,
+    imagen_qr VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    
+)
 
------------------------------- 10 ------------------------------
-CREATE TABLE juegos_plataformas (
+CREATE TABLE venta (
+    id_venta INT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED,
+    fecha_de_compra DATE,
+    precio_total DECIMAL,
+    id_metodop INT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_metodop) REFERENCES metodo_de_pagos(id_metodop) ON DELETE CASCADE,
+)
+
+CREATE TABLE Detale_De_Venta(
+    id_detalle_de_venta INT AUTO_INCREMENT PRIMARY KEY,
     id_juego INT,
-    id_plataforma INT,
-    FOREIGN KEY (id_juego) REFERENCES juegos(id_juego) ON DELETE CASCADE,
-    FOREIGN KEY (id_plataforma) REFERENCES plataformas(id_plataforma) ON DELETE CASCADE
-);
-
------------------------------ 11 ----------------------------
-CREATE TABLE juegos_generos (
-    id_juego INT,
-    id_genero INT,
-    FOREIGN KEY (id_juego) REFERENCES juegos(id_juego) ON DELETE CASCADE,
-    FOREIGN KEY (id_genero) REFERENCES generos(id_genero) ON DELETE CASCADE
-);
-
------------------------------ 12 ---------------------------------
-
-
----------------------------13-----------------------------
+    cantidad INT,
+    precio_total DECIMAL(10,2),
+    id_venta INT,
+    FOREIGN KEY (id_juego) REFERENCES juegos (id_juego) ON DELETE CASCADE,
+    FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON DELETE CASCADE,
+)
