@@ -22,35 +22,14 @@
 
         <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jaro:opsz@6..72&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jaro:opsz@6..72&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     </head>
 
     <body style="background-color: rgba(50, 127, 152, 0.602);">
-        <div id="carouselExampleAutoplaying" class="carousel slide ch" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="{{asset('img/cs1.jpeg')}}" class="d-block w-100 cim" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="{{asset('img/cs2.webp')}}" class="d-block w-100 cim" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="{{asset('img/cs3.webp')}}" class="d-block w-100 cim" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('img/cs4.jpeg')}}" class="d-block w-100 cim" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+        @php
+            $user = Auth::user();
+        @endphp
         <header>
             <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark" >
                 <div class="container-fluid" style="background-color: #0A526B">
@@ -63,36 +42,42 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/" style="font-family: ">Catalogo</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('carritos')}}">Mi Carrito</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Registros
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{url('estados')}}">Estados de Venta</a></li>
-                                    <li><a class="dropdown-item" href="{{url('generos')}}">Géneros</a></li>
-                                    <li><a class="dropdown-item" href="{{url('metodos')}}">Métodos de pago</a></li>
-                                    <li><a class="dropdown-item" href="{{url('plataformas')}}">Plataformas</a></li>
-                                    <li><a class="dropdown-item" href="{{url('rols')}}">Rols</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{{url('users')}}">Lista de usuarios</a></li>
-                                    <li><a class="dropdown-item" href="{{url('tiendas')}}">Lista de Tiendas</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Ventas
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar una Venta</a></li>
-                                    <li><a class="dropdown-item" href="{{url('#')}}">Registro de Ventas</a></li>
-                                </ul>
-                            </li>
+                            @auth
+                                @if ($user->id_rol==2 || $user->id_rol==1)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
+                                    </li>
+                                @elseif($user->id_rol==3)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('carritos')}}">Mi Carrito</a>
+                                    </li>
+                                @elseif($user->id_rol==3)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Registros
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            {{-- <li><a class="dropdown-item" href="{{url('estados')}}">Estados de Venta</a></li> --}}
+                                            <li><a class="dropdown-item" href="{{url('generos')}}">Géneros</a></li>
+                                            <li><a class="dropdown-item" href="{{url('metodos')}}">Métodos de pago</a></li>
+                                            <li><a class="dropdown-item" href="{{url('plataformas')}}">Plataformas</a></li>
+                                            <li><a class="dropdown-item" href="{{url('rols')}}">Rols</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{url('users')}}">Lista de usuarios</a></li>
+                                            <li><a class="dropdown-item" href="{{url('tiendas')}}">Lista de Tiendas</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Ventas
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar una Venta</a></li>
+                                            <li><a class="dropdown-item" href="{{url('#')}}">Registro de Ventas</a></li>
+                                        </ul>
+                                    </li>
+                            @endif
+                            @endauth
                             <!--             samuel ---->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -182,6 +167,30 @@
                 </div>
             </nav>
         </header>
+        <div id="carouselExampleAutoplaying" class="carousel slide ch" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="{{asset('img/cs1.jpeg')}}" class="d-block w-100 cim" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="{{asset('img/cs2.webp')}}" class="d-block w-100 cim" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="{{asset('img/cs3.webp')}}" class="d-block w-100 cim" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('img/cs4.jpeg')}}" class="d-block w-100 cim" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
         <main>
             @yield('content')
         </main>
