@@ -134,6 +134,11 @@
   padding: 0;
   object-fit: cover;
 }
+
+.qrimg{
+  width: 70%;
+  height: 70%;
+}
 /* .ljuegos-Img {
   max-width: 80px;
   max-height: 80px;
@@ -161,3 +166,15 @@
       max-height: 60px;
   } */
 }
+
+.venta-r{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ventar{
+  width: 30%;
+  height: 30%;
+}
+

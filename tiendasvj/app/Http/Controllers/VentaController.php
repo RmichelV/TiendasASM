@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\venta;
+use App\Models\juego;
+use App\Models\User;
+use App\Models\metodo_de_pago;
+use App\Models\detalle_de_venta;
+
+
 use Illuminate\Http\Request;
 
 class VentaController extends Controller
@@ -12,7 +18,12 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        $ventas = venta::all();
+        $juegos = juego::all();
+        $users = User::all();
+        $metodo_de_pagos=metodo_de_pago::all();
+        $detalle_de_ventas = detalle_de_venta::all();
+        return view('ventas.verventas',compact('ventas','juegos','users','metodo_de_pagos','detalle_de_ventas'));
     }
 
     /**

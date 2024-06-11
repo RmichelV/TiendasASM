@@ -76,7 +76,7 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar una Venta</a></li>
-                                            <li><a class="dropdown-item" href="{{url('#')}}">Registro de Ventas</a></li>
+                                            <li><a class="dropdown-item" href="{{url('ventas')}}">Registro de Ventas</a></li>
                                         </ul>
                                     </li>
                             @endif
