@@ -19,6 +19,20 @@ class TiendaController extends Controller
         return view("Tienda.index", compact("tiendas","users"));
     }
 
+    public function agregarTienda()
+    {
+        $tiendas = tienda::all();
+        $users = user::all();
+        return view("Tienda.agregar", compact("tiendas","users"));
+    }
+    public function editarTienda($id)
+    {
+        $tienda = tienda::findOrFail($id); // Busca el usuario por ID
+    
+        $users = user::all(); // Recupera todos los roles, si es necesario para la vista de edición
+    
+        return view('tienda.editar', compact('tienda', 'users'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -47,7 +61,7 @@ class TiendaController extends Controller
         $tiendas->direccion=$request->input("direccion");
         $tiendas->user_id=$request->input("user");
         $tiendas->save();
-        return redirect()->back();
+        return redirect('tiendas')->with('success','tienda agregada correctamente');
     }
 
     /**
@@ -85,7 +99,7 @@ class TiendaController extends Controller
         $tiendas->direccion=$request->input("direccion");
         $tiendas->user_id=$request->input("user");
         $tiendas->update();
-        return redirect()->back();
+        return redirect('tiendas')->with('success','tienda agregada correctamente');
     }
 
     /**

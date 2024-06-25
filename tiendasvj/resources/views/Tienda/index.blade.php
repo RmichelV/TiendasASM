@@ -4,9 +4,11 @@
     <h1><center>Lista de las tiendas </center> </h1>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregar">
+    <a href="{{url('agregar-tienda')}}">
+    <button type="button" class="btn btn-primary">
     Agregar nueva tienda 
     </button>
+</a>
     <br>
     <br>
     <div class="table-responsive">
@@ -21,6 +23,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($tiendas as $tienda)
                     <tr class="">
                         <td scope="row">{{$tienda->id_tienda}}</td> <!--aqui va el id-->
@@ -28,9 +31,11 @@
                         <td> {{$tienda->direccion}} </td>
                         <td> {{$tienda->user->name}} </td>
                         <td>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar{{$tienda->id_tienda}}">
-                                Editar
-                            </button>
+                            <a href="{{ url('editar-tienda/' . $tienda->id_tienda) }}">
+                                <button type="button" class="btn btn-success">
+                                    Editar
+                                </button>
+                            </a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar{{$tienda->id_tienda}}">
                                 Eliminar
                             </button>
@@ -40,6 +45,7 @@
             </tbody>
         </table>
     </div>
-    @include('tienda.agregar')
-    @include('tienda.info')
+
+    
 @endsection
+@include('tienda.info')

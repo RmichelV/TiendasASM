@@ -1,13 +1,6 @@
-<!-- Modal -->
-
-    <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Nuevo Juego</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{route('juegos.store')}}" method="post" enctype="multipart/form-data">
+@extends('template')
+@section('content')
+            <form action="{{route('juegos.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -100,45 +93,45 @@
                                     <div class="invalid-feedback">{{"Por favor introduzca imagen valida"}}</div>
                                 @enderror
                             <br>
-
-                            <label for="" class="form-label">Seleccione los géneros </label>
+                                <label for="" class="form-label">Seleccione los géneros </label>
                                 <div class="generos-container">
                                     @foreach ($generos as $genero)
-                                        <div class="genero">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="generos[]" id="generos" value="{{$genero->id_genero}}">
-                                                <label class="form-check-label" for="">{{$genero->nombre}}</label>
-                                            </div>
+                                    <div class="genero">
+                                        <div class="form-check">
+                                            <input class="form-check-input @error('generos') is-invalid @enderror" type="checkbox" name="generos[]" id="generos" value="{{ $genero->id_genero }}">
+                                            <label class="form-check-label" for="">{{ $genero->nombre }}</label>
                                         </div>
+                                    </div>
                                     @endforeach
                                     @error('generos')
-                                        <div class="invalid-feedback">{{ "Debe seleccionar al menos una genero" }}</div>
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                                 </div>
+
                             <br>
                             <label for="" class="form-label">Seleccione las plataformas </label>
                             <div class="plataformas-container">
                                 @foreach ($plataformas as $plataforma)
                                 <div class="plataforma">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="plataformas[]" id="plataformas" value="{{$plataforma->id_plataforma}}">
-                                        <label class="form-check-label" for="">{{$plataforma->nombre}}</label>
+                                        <input class="form-check-input @error('plataformas') is-invalid @enderror" type="checkbox" name="plataformas[]" id="plataformas" value="{{ $plataforma->id_plataforma }}">
+                                        <label class="form-check-label" for="">{{ $plataforma->nombre }}</label>
                                     </div>
                                 </div>
                                 @endforeach
                                 @error('plataformas')
-                                    <div class="invalid-feedback">{{ "Debe seleccionar al menos una plataforma" }}</div>
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <br>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    
+                            <a href="{{url('juegos')}}">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></a>
                             <button type="submit" class="btn btn-primary">Agregar</button>
-                        </div>
+                        
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
 
+                @endsection

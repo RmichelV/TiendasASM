@@ -1,7 +1,9 @@
 @extends('template')
 
 @section('content')
-
+@php
+    $userc=Auth::user();
+@endphp
 
 <div class="container">
     <div class="row">
@@ -36,7 +38,10 @@
                                 <input type="hidden" name="id_juego" value="{{ $juego->id_juego }}">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 @auth
+                                @if ($userc->id_rol==3)
+                                    
                                 <button type="submit" class="btn btn-primary">Agregar a tu carrito</button>
+                                @endif
                                 @endauth
                             </form>
                         </div>

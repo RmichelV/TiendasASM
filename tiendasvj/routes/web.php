@@ -61,3 +61,18 @@ Route::get('/juegos/filtrar-por-genero/{id_genero}', [JuegoController::class, 'f
 // RUTA DE FILTRADO POR PLATAFORMA
 Route::get('/juegos/filtrar-por-plataforma/{id_plataforma}', [JuegoController::class, 'filtrarPorPlataforma'])->name('juegos.filtrarPorPlataforma');
 
+
+
+// route::get('/editar-u',function(){
+//     return view('Users.editar');
+// })->name('editar-u');
+
+// usuarios 
+Route::get('/editar-u/{id}', [UserController::class, 'editusr'])->name('users.editar');
+//tienda 
+Route::get('/agregar-tienda', [TiendaController::class,'agregarTienda'])->name('agregar-tienda');
+Route::get('/editar-tienda/{id}', [TiendaController::class, 'editarTienda'])->name('editar-tienda');
+
+//juegos 
+Route::get('/agregar-juego', [JuegoController::class,'agregarJuego'])->name('agregar-juego');
+Route::get('/editar-juego/{id}', [JuegoController::class, 'editarJuego'])->name('editar-juego');

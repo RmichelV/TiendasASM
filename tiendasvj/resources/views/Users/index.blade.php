@@ -1,3 +1,4 @@
+<!-- resources/views/users/index.blade.php -->
 @extends('template')
 @section('content')
 
@@ -10,7 +11,7 @@
                     <th scope="col">Apellido(s)</th>
                     <th scope="col">Fecha de Nacimiento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Contraseña</th>
+                    {{-- <th scope="col">Contraseña</th> --}}
                     <th scope="col">Tipo de Usuario</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -23,12 +24,14 @@
                         <td>{{$user->last_name}} </td>
                         <td>{{$user->birthday}} </td>
                         <td>{{$user->email}} </td>
-                        <td>{{$user->password}} </td>
+                        {{-- <td>{{$user->password}} </td> --}}
                         <td>{{$user->rol->nombre}} </td>
                         <td>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar{{$user->id}}">
-                                Editar
-                            </button>
+                            <a href="{{ url('editar-u/' . $user->id) }}">
+                                <button type="button" class="btn btn-success">
+                                    Editar
+                                </button>
+                            </a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar{{$user->id}}">
                                 Eliminar
                             </button>

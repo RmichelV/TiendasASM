@@ -9,6 +9,7 @@ use App\Models\genero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class JuegoController extends Controller
 {
@@ -23,6 +24,22 @@ class JuegoController extends Controller
         $generos = genero::all();
         return view("juego.index", compact("juegos","tiendas","plataformas","generos"));
     }
+    public function agregarJuego()
+    {
+        $juegos = juego::all();
+        $tiendas = tienda::all();
+        $plataformas=plataforma::all();
+        $generos = genero::all();
+        return view("juego.agregar", compact("juegos","tiendas","plataformas","generos"));
+    }
+    public function editarJuego($id)
+    {
+        $juegos = juego::all();
+        $tiendas = tienda::all();
+        $plataformas=plataforma::all();
+        $generos = genero::all();
+        return view("juego.editar", compact("juegos","tiendas","plataformas","generos"));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,12 +52,15 @@ class JuegoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|regex:/^[a-zA-Z0-9]\s*\S.*$/',
-            // 'descripcion' => 'required|string|regex:/^[a-zA-Z0-9.-]+$/',
+            'nombre' => 'required|string|regex:/^[a-zA-Z0-9\s\-_\.]+$/|unique:juegos,nombre',
+            'descripcion' => 'required',
             'precio' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
-            'stock' => 'required|numeric|integer',
+            'stock' => ['required', 'numeric', 'integer', 'min:1'],
             'generos' => 'required|array|min:1',
             'plataformas' => 'required|array|min:1',
+        ],[
+            'generos.required' => 'Debe seleccionar al menos un género',
+            'plataformas.required' => 'Debe seleccionar al menos una plataforma',
         ]);
 
         if ($validator->fails()) {
@@ -76,7 +96,7 @@ class JuegoController extends Controller
 
         // dd($request->all());
 
-        return redirect()->back()->with('success', 'El juego se ha agregado correctamente.');
+        return redirect('juegos')->with('success', 'El juego se ha agregado correctamente.');
     }
     public function show(juego $juego)
     {
@@ -97,13 +117,23 @@ class JuegoController extends Controller
     public function update(Request $request,$id_juego)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|regex:/^[a-zA-Z0-9]\s*\S.*$/',
+            'nombre' => [
+                'required',
+                'string',
+                Rule::unique('juegos', 'nombre')->ignore($id_juego,'id_juego'),
+            ],
             'descripcion' => 'required',
             'precio' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
-            'stock' => 'required|numeric|integer',
+            'stock' => ['required', 'numeric', 'integer', 'min:1'],
             'generos' => 'required|array|min:1',
             'plataformas' => 'required|array|min:1',
+        ], [
+            'nombre.unique' => 'El nombre del juego ya está en uso.',
+            'stock.min' => 'El campo Stock debe ser mayor que cero.',
+            'generos.required' => 'Debe seleccionar al menos un género',
+            'plataformas.required' => 'Debe seleccionar al menos una plataforma',
         ]);
+
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -138,7 +168,7 @@ class JuegoController extends Controller
 
         // dd($request->all());
 
-        return redirect()->back()->with('success', 'El juego se ha actualizado correctamente.');
+        return redirect('juegos')->with('success', 'El juego se ha agregado correctamente.');
     }
 
     /**

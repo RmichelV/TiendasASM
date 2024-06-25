@@ -1,12 +1,15 @@
 @extends('template')
 @section('content')
 
+
     <h1  class="titulo-j" ><center>Lista de sus VideoJuegos </center> </h1>
 
     <!-- Button trigger modal -->
+    <a href="{{url('agregar-juego')}}">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregar" style="background-color: rgba(24, 20, 104, 0.5); width: 200px ;height: 50px; display: flex; justify-content: center; align-items: center; font-family: Forte, sans-serif;" >
     Agregar nuevo juego
     </button>
+    </a>
     <br>
     <br>
     <div class="table-responsive " >
@@ -41,9 +44,10 @@
                             <td> {{$juego->stock}} </td>
                             <td> <img src="{{ asset('img/' . $juego->imagen) }}" alt="" srcset="" class="ljuegos-Img"> </td>
                             <td>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar{{$juego->id_juego}}" style="background-color: #066F6A">
+                                <a href="{{url('editar-juego/' . $juego->id_juego)}}">
+                                <button type="button" class="btn btn-success" style="background-color: #066F6A">
                                     Editar
-                                </button>
+                                </button></a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar{{$juego->id_juego}}" style="background-color: #4D0344">
                                     Eliminar
                                 </button>
@@ -54,6 +58,5 @@
             </tbody>
         </table>
     </div>
-    @include('juego.agregar')
     @include('juego.info')
 @endsection

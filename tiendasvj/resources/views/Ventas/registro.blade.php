@@ -80,8 +80,11 @@
         value="{{$user->id}}"
         />
     </div>
-    <button type="submit">Realizar Venta</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregar">
+        realizar venta
+    </button>
 </form>
+@include('ventas.qr')
 @endsection
 
 
@@ -116,5 +119,3 @@
         }
     });
     </script>
-    
-    

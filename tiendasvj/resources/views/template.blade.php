@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>TiendaASM</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -43,17 +43,6 @@
                                 <a class="nav-link active" aria-current="page" href="/" style="font-family: ">Catalogo</a>
                             </li>
                             @auth
-                                @if ($user->id_rol==2 || $user->id_rol==1)
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
-                                    </li>
-                                @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('carritos')}}" >
-                                            Mi Carrito
-                                            {{-- <img src="{{ asset('img/carrito.png') }}" alt="" class="carrito"> --}}
-                                        </a>
-                                    </li>
                                 @if($user->id_rol==1)
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,23 +51,29 @@
                                         <ul class="dropdown-menu">
                                             {{-- <li><a class="dropdown-item" href="{{url('estados')}}">Estados de Venta</a></li> --}}
                                             <li><a class="dropdown-item" href="{{url('generos')}}">Géneros</a></li>
-                                            <li><a class="dropdown-item" href="{{url('metodos')}}">Métodos de pago</a></li>
+                                            {{-- <li><a class="dropdown-item" href="{{url('metodos')}}">Métodos de pago</a></li> --}}
                                             <li><a class="dropdown-item" href="{{url('plataformas')}}">Plataformas</a></li>
-                                            <li><a class="dropdown-item" href="{{url('rols')}}">Rols</a></li>
+                                            {{-- <li><a class="dropdown-item" href="{{url('rols')}}">Rols</a></li> --}}
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="{{url('users')}}">Lista de usuarios</a></li>
                                             <li><a class="dropdown-item" href="{{url('tiendas')}}">Lista de Tiendas</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Ventas
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar una Venta</a></li>
-                                            <li><a class="dropdown-item" href="{{url('ventas')}}">Registro de Ventas</a></li>
-                                        </ul>
-                                    </li>
+                                    
+                            @endif
+                            @if ($user->id_rol==2)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Ventas
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{url('detalle_ventas')}}">Registrar Venta fisica</a></li>
+                                        <li><a class="dropdown-item" href="{{url('ventas')}}">Ver registro de Ventas</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{url('juegos')}}">Mis Juegos</a>
+                                </li>
                             @endif
                             @endauth
                             <!--             samuel ---->
@@ -125,6 +120,10 @@
                             <!--             samuel ---->
 
                         </ul>
+
+                        @auth
+                           
+                        @endauth
                         <form class="d-flex" role="search" action="{{ route('buscador.index') }}" method="GET">
                             <input class="form-control me-2" name="query" type="search" placeholder="Buscar" aria-label="Search" value="{{ request()->input('query') }}">
                             <button class="btn btn-outline-light" type="submit">Buscar</button>
@@ -133,6 +132,14 @@
                         @if (Route::has('login'))
                         
                                 @auth
+                                @if ($user->id_rol==3)
+                                    <li class="nav-item">
+                                        <a class="nav-link img-carrito" href="{{url('carritos')}}">
+                                            {{-- Mi Carrito --}}
+                                            <img src="{{ asset('img/carrito.png') }}" alt="" class="carrito">
+                                        </a>
+                                    </li>
+                                @endif
                                     {{-- <a
                                         href="{{ url('Profile.edit') }}"
                                         class="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"

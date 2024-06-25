@@ -20,7 +20,14 @@ class UserController extends Controller
         $rols= rol::all();
         return view('users.index',compact('users','rols'));
     }
-
+    public function editusr($id)
+    {
+        $user = User::findOrFail($id); // Busca el usuario por ID
+    
+        $rols = Rol::all(); // Recupera todos los roles, si es necesario para la vista de edición
+    
+        return view('users.editar', compact('user', 'rols'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -59,9 +66,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|regex:/^[a-zA-Z]+(\s[a-zA-Z]+)*$/',
-            'last_name'=> 'required|string|regex:/^[a-zA-Z]+(\s[a-zA-Z]+)*$/',
-            'birthday'=> 'required|date|before_or_equal:' . now()->format('Y-m-d'),
+            'name' => 'required|string|regex:/^[a-zA-ZñÑ]+(?: [a-zA-ZñÑ]+)?$/',
+            'last_name'=> 'required|string|regex:/^[a-zA-ZñÑ]+(?: [a-zA-ZñÑ]+)?$/',
+            'birthday' => 'required|date|before_or_equal:' . now()->format('Y-m-d') . '|after_or_equal:1920-01-01|before_or_equal:2020-12-31',
             'email'=>'required|email',
             'password' => 'required|string|min:8',
         ]);
@@ -80,7 +87,7 @@ class UserController extends Controller
         $users->id_rol = $request->input("rol");
         $users->update();
 
-        return redirect()->back()->with('success', 'usuario se ha agregado correctamente.');
+        return redirect('users')->with('success', 'usuario se ha actualizado correctamente.');
     }
 
     /**

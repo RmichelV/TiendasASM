@@ -102,7 +102,7 @@ CREATE TABLE tiendas (
 
 CREATE TABLE juegos (
     id_juego INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50),
+    nombre VARCHAR(50) UNIQUE,
     descripcion VARCHAR(500),
     cantidad_de_jugadores VARCHAR(255), 
     precio DECIMAL(8,2),
